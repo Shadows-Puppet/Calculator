@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Token {
+class Token {// Token class constructor
     public:
         string type;
         double value;
@@ -35,12 +35,12 @@ class Token {
 
 unordered_map<string, int> precedence_table;
 
-int get_precedence(Token x)
+int get_precedence(Token x)// get precedence of operations using the map
 {
     return precedence_table.find(x.type)->second;
 }
 
-double calculate(Token op, double num1, double num2)
+double calculate(Token op, double num1, double num2)// performs binary operation based on the operation token
 {
     double a = num1;
     double b = num2;
@@ -62,7 +62,7 @@ double calculate(Token op, double num1, double num2)
 }
 
 
-double polish_solve(queue<Token> q)
+double polish_solve(queue<Token> q)// solves the expression when given a queue of tokens in reverse-polish notation
 {
     stack<double> s;
     while(!q.empty())
@@ -97,7 +97,7 @@ double polish_solve(queue<Token> q)
     }
     return 0;
 }
-queue<Token> to_reverse_polish(vector<Token> vec)
+queue<Token> to_reverse_polish(vector<Token> vec)// shunting yard algorithm to convert infix to reverse-polish notation
 {
     queue<Token> q;
     stack<Token> s;
@@ -162,7 +162,7 @@ queue<Token> to_reverse_polish(vector<Token> vec)
     return q;
 }
 
-vector<Token> get_tokens()
+vector<Token> get_tokens()// parses the user entered string into tokens and stores them in a vector
 {
     string expression;
     cout << "Please enter your expression: ";
@@ -215,6 +215,7 @@ vector<Token> get_tokens()
 
 int main()
 {
+    // precedence is given to operation types
     precedence_table["add"] = 1;
     precedence_table["sub"] = 1;
     precedence_table["mul"] = 2;
