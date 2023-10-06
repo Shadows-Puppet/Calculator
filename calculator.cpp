@@ -174,7 +174,7 @@ vector<Token> get_tokens()// parses the user entered string into tokens and stor
         if(isdigit(expression[i]))
         {
             string number = "";
-            while(isdigit(expression[i]))
+            while(isdigit(expression[i]) || expression[i] == '.')
             {
                 number += expression[i];
                 i++;
@@ -205,6 +205,8 @@ vector<Token> get_tokens()// parses the user entered string into tokens and stor
                     break;
                 case ')':
                     gaming.emplace_back("r_paren");
+                default:
+                    throw invalid_argument("Unrecognized Character Detected.");
                 
             }
         }
